@@ -14,6 +14,9 @@ import {
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
+import Login from "./src/components/Login/Login";
+import Home from "./src/components/Home/Home";
+import Signup from "./src/components/Signup/Signup";
 
 // Define the config
 const config = {
@@ -24,10 +27,18 @@ const config = {
 // extend the theme
 export const theme = extendTheme({ config });
 
+
+
+
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Center
+      <Login/>
+      {/* <Home/> */}
+      {/* <Signup/> */}
+
+
+      {/* <Center
         _dark={{ bg: "blueGray.900" }}
         _light={{ bg: "blueGray.50" }}
         px={4}
@@ -61,7 +72,7 @@ export default function App() {
           </Link>
           <ToggleDarkMode />
         </VStack>
-      </Center>
+      </Center> */}
     </NativeBaseProvider>
   );
 }
