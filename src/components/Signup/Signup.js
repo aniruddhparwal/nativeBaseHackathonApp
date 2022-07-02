@@ -17,16 +17,16 @@ const SignUpForm = () => {
           </Heading>
           <VStack space={3} mt="5">
             <FormControl>
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
+              <FormControl.Label color={'black'}>Email</FormControl.Label>
+              <Input borderColor={'black'}/>
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
-              <Input type="password" />
+              <Input borderColor={'black'} type="password" />
             </FormControl>
             <FormControl>
               <FormControl.Label>Confirm Password</FormControl.Label>
-              <Input type="password" />
+              <Input borderColor={'black'} type="password" />
             </FormControl>
             <Button mt="2" colorScheme="indigo">
               Sign up

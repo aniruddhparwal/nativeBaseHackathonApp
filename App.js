@@ -17,6 +17,7 @@ import { Platform } from "react-native";
 import Login from "./src/components/Login/Login";
 import Home from "./src/components/Home/Home";
 import Signup from "./src/components/Signup/Signup";
+import Router from "./Router";
 
 // Define the config
 const config = {
@@ -33,8 +34,9 @@ export const theme = extendTheme({ config });
 export default function App() {
   return (
     <NativeBaseProvider>
+      {/* <Home/> */}
       {/* <Login/> */}
-      <Home/>
+      <Router/>
       {/* <Signup/> */}
 
 
@@ -74,6 +76,7 @@ export default function App() {
         </VStack>
       </Center> */}
     </NativeBaseProvider>
+
   );
 }
 
