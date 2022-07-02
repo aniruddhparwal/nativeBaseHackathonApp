@@ -1,10 +1,11 @@
-import * as React from "react";
+import React,{useContext} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {TokenContext } from '../../../context/TokenContext'
 import {
   NativeBaseProvider,
   Button,
@@ -50,6 +51,8 @@ const getIcon = (screenName) => {
 };
 
 function CustomDrawerContent(props) {
+  const [state, dispatch] = useContext(TokenContext)
+
   return (
     <DrawerContentScrollView {...props} safeArea>
       <VStack space="6" my="2" mx="1">
@@ -58,7 +61,8 @@ function CustomDrawerContent(props) {
             Mail
           </Text>
           <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-            john_doe@gmail.com
+            {/* {state.token} */}
+            testing@gmail.com
           </Text>
         </Box>
         <VStack divider={<Divider />} space="4">
@@ -162,6 +166,7 @@ function MyDrawer() {
   );
 }
 export default function DrawerMain() {
+  
   return (
     // <NavigationContainer>
       <NativeBaseProvider>

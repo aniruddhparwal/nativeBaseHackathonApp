@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
 import { ImageBackground, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import { TokenContext } from '../../context/TokenContext';
 
 const styles = StyleSheet.create({
     image: {
@@ -12,6 +13,14 @@ const styles = StyleSheet.create({
   });
 
 const DetailBox = () => {
+
+  const [state, dispatch] = useContext(TokenContext)
+  
+  function tokenSet(tokenReducer) {
+    console.log(tokenReducer,"tokenset called")
+    dispatch({type: 'SET_TOKEN', payload: tokenReducer})
+  }
+
     const navigation = useNavigation();
     const[user, setUser] = useState({
         email: '',
@@ -27,10 +36,12 @@ const DetailBox = () => {
         })
         .then(function (response) {
           setMyToken(response["data"].token);
+
           setUser({
             email: '',
             password: ''
           })
+          tokenSet(response["data"].token)
           handleNavigate()
         })
         .catch(function (error) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useReducer} from "react";
 import {
   Text,
   Link,
@@ -12,6 +12,7 @@ import {
   VStack,
   Box,
 } from "native-base";
+import {TokenContext,initialState} from './src/context/TokenContext'
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
 import Login from "./src/components/Login/Login";
@@ -29,16 +30,25 @@ const config = {
 // extend the theme
 export const theme = extendTheme({ config });
 
-
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_TOKEN':
+      return { token: action.payload };
+  }
+};
 
 
 export default function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <NativeBaseProvider>
       {/* <Home/> */}
       {/* <Login/> */}
       {/* <DrawerMain/> */}
+      <TokenContext.Provider value={[state, dispatch]}>
+      {/* other components */}
       <Router/>
+    </TokenContext.Provider>
       {/* <DrawerMain/> */}
       {/* <Signup/> */}
 
