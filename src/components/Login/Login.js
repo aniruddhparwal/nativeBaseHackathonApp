@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
 import { ImageBackground, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-
+import axios from 'axios';
 
 const styles = StyleSheet.create({
     image: {
@@ -12,7 +12,46 @@ const styles = StyleSheet.create({
   });
 
 const DetailBox = () => {
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
+    const[user, setUser] = useState({
+        email: '',
+        password: '',
+      });
+      const[myToken, setMyToken] = useState('');
+    
+      const signin=()=>{
+        console.log("my data", user);
+        axios.post('http://192.168.168.219:4000/api/v1/login', {
+          email: user.email,
+          password: user.password,
+        })
+        .then(function (response) {
+          setMyToken(response["data"].token);
+          setUser({
+            email: '',
+            password: ''
+          })
+          handleNavigate()
+        })
+        .catch(function (error) {
+          console.log(error);
+          setUser({
+            email: '',
+            password: '',
+          })
+        });
+      }
+
+      const handleNavigate=()=>{
+        navigation.navigate('Drawer')
+    }
+    
+
+      const {email, password} = user;  
+      const handleChange = name => text =>{
+          setUser({...user, error:false, [name]:text})
+      }
+  
     return <Center w="100%">
         <Box safeArea p="2" py="8" w="90%" maxW="290">
           <Heading size="lg" fontWeight="600" color="black" _dark={{
@@ -29,11 +68,17 @@ const DetailBox = () => {
           <VStack space={3} mt="5">
             <FormControl>
               <FormControl.Label _text={{color:'black'}}>Email ID</FormControl.Label>
-              <Input borderColor={'black'}/>
+              <Input borderColor={'black'}
+                value={email}
+                onChangeText={handleChange('email')}
+              />
             </FormControl>
             <FormControl>
               <FormControl.Label _text={{color:'black'}}>Password</FormControl.Label>
-              <Input borderColor={'black'} type="password" />
+              <Input borderColor={'black'} type="password"
+                value={password}
+                onChangeText={handleChange('password')}
+              />
               <Link _text={{
               fontSize: "xs",
               fontWeight: "500",
@@ -42,7 +87,7 @@ const DetailBox = () => {
                 Forget Password?
               </Link>
             </FormControl>
-            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('Drawer')}>
+            <Button mt="2" colorScheme="indigo" onPress={() => signin()}>
               Sign in
             </Button>
             <HStack mt="6" justifyContent="center">
