@@ -1,8 +1,12 @@
 import React from 'react'
 import { Box, Heading, VStack, FormControl, Input, Button, Center, NativeBaseProvider } from "native-base";
 import { ImageBackground, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
 
 const SignUpForm = () => {
+    const navigation = useNavigation(); 
+
     return <Center w="full">
         <Box safeArea p="2" w="90%" maxW="290" py="8">
           <Heading size="lg" color="coolGray.800" _dark={{
@@ -17,18 +21,18 @@ const SignUpForm = () => {
           </Heading>
           <VStack space={3} mt="5">
             <FormControl>
-              <FormControl.Label color={'black'}>Email</FormControl.Label>
+              <FormControl.Label _text={{color:'black'}}>Email</FormControl.Label>
               <Input borderColor={'black'}/>
             </FormControl>
             <FormControl>
-              <FormControl.Label>Password</FormControl.Label>
+              <FormControl.Label _text={{color:'black'}}>Password</FormControl.Label>
               <Input borderColor={'black'} type="password" />
             </FormControl>
             <FormControl>
-              <FormControl.Label>Confirm Password</FormControl.Label>
+              <FormControl.Label _text={{color:'black'}}>Confirm Password</FormControl.Label>
               <Input borderColor={'black'} type="password" />
             </FormControl>
-            <Button mt="2" colorScheme="indigo">
+            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('Login')}>
               Sign up
             </Button>
           </VStack>

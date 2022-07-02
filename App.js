@@ -18,6 +18,7 @@ import Login from "./src/components/Login/Login";
 import Home from "./src/components/Home/Home";
 import Signup from "./src/components/Signup/Signup";
 import Router from "./Router";
+import DrawerMain from "./src/components/Dashboard/Navbar/DrawerMain";
 
 // Define the config
 const config = {
@@ -36,7 +37,9 @@ export default function App() {
     <NativeBaseProvider>
       {/* <Home/> */}
       {/* <Login/> */}
+      {/* <DrawerMain/> */}
       <Router/>
+      {/* <DrawerMain/> */}
       {/* <Signup/> */}
 
 

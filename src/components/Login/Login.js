@@ -1,9 +1,18 @@
 import React from 'react'
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
 import { ImageBackground, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
+
+const styles = StyleSheet.create({
+    image: {
+      flex: 1,
+      justifyContent: "center"
+    },
+  });
 
 const DetailBox = () => {
+    const navigation = useNavigation(); 
     return <Center w="100%">
         <Box safeArea p="2" py="8" w="90%" maxW="290">
           <Heading size="lg" fontWeight="600" color="black" _dark={{
@@ -19,11 +28,11 @@ const DetailBox = () => {
   
           <VStack space={3} mt="5">
             <FormControl>
-              <FormControl.Label>Email ID</FormControl.Label>
+              <FormControl.Label _text={{color:'black'}}>Email ID</FormControl.Label>
               <Input borderColor={'black'}/>
             </FormControl>
             <FormControl>
-              <FormControl.Label>Password</FormControl.Label>
+              <FormControl.Label _text={{color:'black'}}>Password</FormControl.Label>
               <Input borderColor={'black'} type="password" />
               <Link _text={{
               fontSize: "xs",
@@ -33,7 +42,7 @@ const DetailBox = () => {
                 Forget Password?
               </Link>
             </FormControl>
-            <Button mt="2" colorScheme="indigo">
+            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('Drawer')}>
               Sign in
             </Button>
             <HStack mt="6" justifyContent="center">
@@ -56,12 +65,7 @@ const DetailBox = () => {
   };
 
 
-  const styles = StyleSheet.create({
-    image: {
-      flex: 1,
-      justifyContent: "center"
-    },
-  });
+
 
 
 const Login = () => {

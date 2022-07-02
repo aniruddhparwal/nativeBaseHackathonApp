@@ -2,7 +2,6 @@ import { Box, Button, NativeBaseProvider } from 'native-base'
 import React from 'react'
 import { ImageBackground, StyleSheet,Image,View } from "react-native";
 
-// import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
     image: {
@@ -23,9 +22,7 @@ const styles = StyleSheet.create({
   });
 
 const Home = ({navigation}) => {
-    // const goToAbout = () => {
-    //     Actions.login()
-    //  }
+    
   return (
     <NativeBaseProvider>
         <Box w='full' flex={1} background={'amber.100'}>
