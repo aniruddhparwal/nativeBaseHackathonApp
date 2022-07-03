@@ -1,11 +1,11 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {TokenContext } from '../../../context/TokenContext'
+import { TokenContext } from "../../../context/TokenContext";
 import {
   NativeBaseProvider,
   Button,
@@ -21,6 +21,7 @@ import {
   Icon,
 } from "native-base";
 import Flatlist from "../FlatList";
+import BankAccount from "../BankAccount";
 const Drawer = createDrawerNavigator();
 function Component(props) {
   return (
@@ -36,7 +37,7 @@ const getIcon = (screenName) => {
   switch (screenName) {
     case "Inbox":
       return "email";
-    case "Outbox":
+    case "Bank Account":
       return "send";
     case "Favorites":
       return "heart";
@@ -52,7 +53,7 @@ const getIcon = (screenName) => {
 };
 
 function CustomDrawerContent(props) {
-  const [state, dispatch] = useContext(TokenContext)
+  const [state, dispatch] = useContext(TokenContext);
 
   return (
     <DrawerContentScrollView {...props} safeArea>
@@ -157,7 +158,7 @@ function MyDrawer() {
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
         <Drawer.Screen name="Inbox" key={1} component={Flatlist} />
-        <Drawer.Screen name="Outbox" key={2} component={Component} />
+        <Drawer.Screen name="Bank Account" key={2} component={BankAccount} />
         <Drawer.Screen name="Favorites" key={3} component={Component} />
         <Drawer.Screen name="Archive" key={4} component={Component} />
         <Drawer.Screen name="Trash" key={5} component={Component} />
@@ -167,12 +168,11 @@ function MyDrawer() {
   );
 }
 export default function DrawerMain() {
-  
   return (
     // <NavigationContainer>
-      <NativeBaseProvider>
-        <MyDrawer />
-      </NativeBaseProvider>
+    <NativeBaseProvider>
+      <MyDrawer />
+    </NativeBaseProvider>
     // </NavigationContainer>
   );
 }
