@@ -5,7 +5,6 @@ import Home from './src/components/Home/Home';
 import Login from './src/components/Login/Login';
 import Signup from './src/components/Signup/Signup';
 import DrawerMain from './src/components/Dashboard/Navbar/DrawerMain';
-
 const Stack = createNativeStackNavigator();
 
 const Router = () => {

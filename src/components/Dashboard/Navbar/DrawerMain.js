@@ -6,6 +6,7 @@ import {
 } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TokenContext } from "../../../context/TokenContext";
+import BankAccount from "../../BankAccount/BankAccount";
 import {
   NativeBaseProvider,
   Button,
