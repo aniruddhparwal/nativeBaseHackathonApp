@@ -20,6 +20,7 @@ import {
   Divider,
   Icon,
 } from "native-base";
+import Flatlist from "../FlatList";
 const Drawer = createDrawerNavigator();
 function Component(props) {
   return (
@@ -155,7 +156,7 @@ function MyDrawer() {
       <Drawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Inbox" key={1} component={Component} />
+        <Drawer.Screen name="Inbox" key={1} component={Flatlist} />
         <Drawer.Screen name="Outbox" key={2} component={Component} />
         <Drawer.Screen name="Favorites" key={3} component={Component} />
         <Drawer.Screen name="Archive" key={4} component={Component} />
