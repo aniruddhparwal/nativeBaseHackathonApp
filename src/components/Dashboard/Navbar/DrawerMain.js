@@ -5,7 +5,8 @@ import {
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {TokenContext } from '../../../context/TokenContext'
+import {TokenContext } from '../../../context/TokenContext';
+import BankAccount from '../../BankAccount/BankAccount';
 import {
   NativeBaseProvider,
   Button,
@@ -157,7 +158,7 @@ function MyDrawer() {
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
         <Drawer.Screen name="Inbox" key={1} component={Flatlist} />
-        <Drawer.Screen name="Outbox" key={2} component={Component} />
+        <Drawer.Screen name="Bank Account" key={2} component={BankAccount} />
         <Drawer.Screen name="Favorites" key={3} component={Component} />
         <Drawer.Screen name="Archive" key={4} component={Component} />
         <Drawer.Screen name="Trash" key={5} component={Component} />
