@@ -14,16 +14,19 @@ import {
   Button,
   Modal,
   View,
+  Fab,
+  Icon,
 } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import QRCode from "react-native-qrcode-svg";
 import { TokenContext } from "../../context/TokenContext";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
-const Example = () => {
-  const [redata, setRedata] = useState([]);
+const SlipsList = () => {
+  const [redata, setRedata] = useState({});
   const [state, dispatch] = useContext(TokenContext);
-  const signin = () => {
+  const fetchSlips = () => {
     // console.log("my data", user);
 
     axios
@@ -42,7 +45,7 @@ const Example = () => {
   };
 
   useEffect(() => {
-    signin();
+    fetchSlips();
   }, []);
 
   const [showModal, setShowModal] = useState(false);
@@ -101,6 +104,7 @@ const Example = () => {
     <Box>
       <FlatList
         data={redata}
+        keyExtractor={(item, index) => "key" + index}
         renderItem={({ item }) => (
           <Box
             borderBottomWidth="1"
@@ -155,7 +159,7 @@ const Example = () => {
                   <Modal.CloseButton />
                   <Modal.Header>QR CODE</Modal.Header>
                   <Modal.Body>
-                    <View>
+                    <View alignItems={"center"}>
                       <QRCode value={item._id} />
                     </View>
                   </Modal.Body>
@@ -175,20 +179,28 @@ const Example = () => {
             </HStack>
           </Box>
         )}
-        keyExtractor={(item) => item.id}
       />
     </Box>
   );
 };
 
-const Flatlist = () => {
+const SlipList = () => {
+  const navigation = useNavigation();
+
   return (
     <NativeBaseProvider>
       <Box w="full" p={"2"} flex={1}>
-        <Example />
+        <SlipsList />
       </Box>
+      <Fab
+        renderInPortal={false}
+        onPress={() => navigation.navigate("Add New Slip")}
+        shadow={2}
+        size="sm"
+        icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+      />
     </NativeBaseProvider>
   );
 };
 
-export default Flatlist;
+export default SlipList;

@@ -14,13 +14,16 @@ import {
   Button,
   Modal,
   View,
+  Fab,
+  Icon,
 } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import QRCode from "react-native-qrcode-svg";
 import { TokenContext } from "../../context/TokenContext";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
-const Example = () => {
+const BankAccountFun = () => {
   const [redata, setRedata] = useState([]);
   const [state, dispatch] = useContext(TokenContext);
   const getBankAccounts = () => {
@@ -57,6 +60,7 @@ const Example = () => {
             _dark={{
               borderColor: "muted.50",
             }}
+            key={item._id}
             borderColor="muted.800"
             pl={["0", "4"]}
             pr={["0", "5"]}
@@ -87,17 +91,26 @@ const Example = () => {
             </HStack>
           </Box>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index + item.id}
       />
     </Box>
   );
 };
 
 const BankAccount = () => {
+  const navigation = useNavigation();
+
   return (
     <NativeBaseProvider>
       <Box w="full" p={"2"} flex={1}>
-        <Example />
+        <BankAccountFun />
+        <Fab
+          renderInPortal={false}
+          onPress={() => navigation.navigate("Add Bank Account")}
+          shadow={2}
+          size="sm"
+          icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+        />
       </Box>
     </NativeBaseProvider>
   );
